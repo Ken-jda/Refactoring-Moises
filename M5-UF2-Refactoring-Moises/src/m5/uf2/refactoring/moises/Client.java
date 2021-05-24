@@ -46,12 +46,11 @@ public class Client {
 
     public String informe() {
     double total = 0;
-    int bonificacions = 0;
+    int bonificacions = 0;  
     String resultat = "Informe de lloguers del client " +
         getNom() +
         " (" + getNif() + ")\n";
     for (Lloguer lloguer: lloguers) {
-        double quantitat = lloguer.quantitat();
 
         // afegeix lloguers freqüents
         bonificacions ++;
@@ -67,8 +66,8 @@ public class Client {
             lloguer.getVehicle().getMarca() +
             " " +
             lloguer.getVehicle().getModel() + ": " +
-            (quantitat * 30) + "€" + "\n";
-        total += quantitat * 30;
+            (lloguer.quantitat() * 30) + "€" + "\n";
+        total += lloguer.quantitat() * 30;
     }
 
     // afegeix informació final
