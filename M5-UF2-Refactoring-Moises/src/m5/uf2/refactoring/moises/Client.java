@@ -66,22 +66,27 @@ public class Client {
     }
 
     private String composaCapsalera() {
-        return "Informe de lloguers del client " + getNom() + " (" + getNif() + ")\n";
+        return "<h1>Informe de lloguers</h1>\n"+  
+                "<p>Informe de lloguers del client <em>" + getNom() + "</em> (<strong>" + getNif() + "</strong>)\n";
     }
 
     private String composaDetall() {
         String resultat="";
+        resultat += "<table>\n";
+        resultat += "<tr><td><strong>Marca</strong></td><td><strong>Model</strong></td><td><strong>Import</strong></td></tr>";
         for (Lloguer lloguer: lloguers) {
         // composa els resultats d'aquest lloguer
-        resultat +=  "\t" + lloguer.getVehicle().getMarca() + " " + lloguer.getVehicle().getModel() + ": " +
-            (lloguer.quantitat() * EUROS_PER_UNITAT_DE_COST) + "€" + "\n";
+        resultat +=  "\t<tr><td>" + lloguer.getVehicle().getMarca() + "</td><td>" 
+                + lloguer.getVehicle().getModel() + "</td></td>" +
+            (lloguer.quantitat() * EUROS_PER_UNITAT_DE_COST) + "€" + "</td></tr>\n";
         }
+        resultat += "</table>";
         return resultat;
     }
 
     private String composaPeu() {
     // afegeix informació final
-        return "Import a pagar: " + importTotal() + "€\n" +
-            "Punts guanyats: " + bonificacionsTotals() + "\n";
+        return "<p>Import a pagar: <em>" + importTotal() + "€</em></p>\n" +
+            "<p>Punts guanyats: <em>" + bonificacionsTotals() + "<em></p>\n";
     }
 }
